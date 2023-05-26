@@ -15,6 +15,30 @@ export const ProductsContainer = styled.section`
         }
       }
     }
+    .price-content {
+      margin: 7% 0;
+      .price {
+        font-size: 28px;
+        font-weight: bold;
+      }
+      .disscount {
+        display: inline-block;
+        font-weight: bold;
+        padding: 4px 8px;
+        margin-left: 5px;
+        font-size: 16px;
+        border-radius: 5px;
+        vertical-align: top;
+        background-color: ${({theme}) => theme.colors.paleOrange };
+        color: ${({theme}) => theme.colors.orange };
+      }
+      .old-price {
+        font-size: 16px;
+        font-weight: bold;
+        text-decoration: line-through;
+        color: ${({theme}) => theme.colors.gayishBlue };
+      }
+    }
   }
 
   .image-gallery-thumbnails-wrapper {
@@ -29,9 +53,6 @@ export const ProductsContainer = styled.section`
 
     .product-content {
       padding 0 0 0 5%;
-      .price-content {
-        margin: 7% 0;
-      }
     }
 
     .gallery-content {
