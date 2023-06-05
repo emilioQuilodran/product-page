@@ -1,13 +1,15 @@
 export class Product {
+    id = '';
     title = '';
     description = '';
-    price = '';
+    price = 0;
     count = 0;
     hasDisscount = false;
     disscount = '';
     images = [];
 
-    constructor(title, description, price, count, hasDisscount, disscount, images){
+    constructor(id, title, description, price, count, hasDisscount, disscount, images){
+        this.id = id;
         this.title = title;
         this.description = description;
         this.price = price;

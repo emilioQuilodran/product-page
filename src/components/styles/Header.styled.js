@@ -3,6 +3,9 @@ import styled from 'styled-components'
 export const HeaderStyle = styled.div`
   background-color: ${({theme}) => theme.colors.white};
   color: ${({theme}) => theme.colors.darkBlue};
+  .MuiSvgIcon-root {
+    cursor: pointer;
+  }
 `
 
 export const Typography = styled.h1`
@@ -15,4 +18,7 @@ export const ProfilePic = styled.span `
   width: 24px;
   height: 25px;
   border-radius: 50%;
+  &:hover {
+    background-color: ${({theme}) => theme.colors.gayishBlue};  
+  }
 `

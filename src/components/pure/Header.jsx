@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import Badge from '@mui/material/Badge';
+import { connect } from 'react-redux'
 import MenuIcon from '@mui/icons-material/Menu';
 import { AppBar, Toolbar, Button, IconButton, Drawer, Link, MenuItem } from "@mui/material"
 import { Link as RouterLink } from "react-router-dom";
@@ -6,6 +8,7 @@ import { HeaderStyle, Typography, ProfilePic } from "../styles/Header.styled"
 import { ThemeProvider } from "styled-components";
 import { themeLight } from '../styles/Theme.styled';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import Cart from './Cart';
 
 const headerData = [
     {
@@ -30,12 +33,20 @@ const headerData = [
     }
 ]
 
-export const Header = () => {
-    const [state, setstate] = useState({
-        mobileView: false,
-        drawerOpen: false,
-    })
-    const { mobileView, drawerOpen } = state
+const Header = ({products}) => {
+const [toggleCart, settoggleCart] = useState(false)
+  let quantity = products?.quantity;
+  
+  const [state, setstate] = useState({
+      mobileView: false,
+      drawerOpen: false,
+  })
+
+  const handleCartState = () => {
+    settoggleCart(!toggleCart)
+  }
+  
+  const { mobileView, drawerOpen } = state
     
     useEffect(() => {
         const setResponsiveness = () => {
@@ -64,9 +75,12 @@ export const Header = () => {
               {sneakersLogo}
               <div>{getMenuButtons()}</div>
               <div style={{display: "flex", gap: "10px"}}>
-                <ShoppingCartIcon />
+                <Badge color="warning" badgeContent={quantity}>
+                  <ShoppingCartIcon onClick={ () => handleCartState()} />
+                </Badge>
                 <ProfilePic></ProfilePic>
               </div>
+              <Cart isOpen={toggleCart} />
             </Toolbar>
         );
     };
@@ -98,9 +112,12 @@ export const Header = () => {
                   <div>{sneakersLogo}</div>
                 </div>
                 <div style={{display: "flex", gap: "10px"}}>
-                  <ShoppingCartIcon />
+                  <Badge color="warning" badgeContent={quantity}>
+                    <ShoppingCartIcon onClick={ () => handleCartState()} />
+                  </Badge>
                   <ProfilePic />
                 </div>
+                <Cart isOpen={toggleCart} />
                 <Drawer
                   {...{
                       anchor: "left",
@@ -169,3 +186,11 @@ export const Header = () => {
       
     )
 }
+
+const mapStateToProps = (state) => {
+  return {
+    products: state.cartState
+  }
+}
+
+export default connect(mapStateToProps)(Header)

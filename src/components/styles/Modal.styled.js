@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 export const ModalStyled = styled.section`
-    position: fixed ;
+    position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
@@ -15,13 +15,19 @@ export const ModalStyled = styled.section`
         display: none;
     }
 
-    .css-7shn1t-MuiSvgIcon-root {
-        top: 0;
+    .image-gallery-left-nav, .image-gallery-right-nav {
+      display: none;
     }
 
+    .css-7shn1t-MuiSvgIcon-root {
+        top: 6%;
+        z-index: 9999;
+    }
+    .image-gallery-slide .image-gallery-image {
+      width:90%;
+    }
     .image-gallery-content {
         max-width: 445px;
-        min-width:445px;
         margin: 40px auto;
     }
 
@@ -31,11 +37,36 @@ export const ModalStyled = styled.section`
         flex-direction: column;
         align-items: center;
         padding: 0;
-    
-        .image-gallery-left-nav, .image-gallery-right-nav {
-          display: none;
+
+        .image-gallery-slide .image-gallery-image {
+          width:100%;
         }
-    
+        
+        .image-gallery-icon {
+          width: 56px;
+          height: 56px;
+          border-radius: 50%;
+          background-color: ${({theme}) => theme.colors.white};
+          .image-gallery-svg {
+            width: 18px;
+            height: auto;
+            font-weight: bold;
+            color:  ${({theme}) => theme.colors.orange};
+          }
+        }
+
+        .image-gallery-left-nav {
+          left: -28px;
+        }
+
+        .image-gallery-right-nav {
+          right: -28px;
+        }
+
+        .image-gallery-left-nav, .image-gallery-right-nav  {
+          padding: 0;
+          display: block;
+        }
         .image-gallery-swipe, .image-gallery-thumbnail-inner {
           border-radius: 10px;
           overflow: hidden;
